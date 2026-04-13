@@ -528,9 +528,7 @@
 
     <!-- JAVASCRIPT & DATA -->
     <script>
-        // --- PRODUCT DATA WITH REAL UNSPLASH IMAGE URLS ---
-        // Note: Using Unsplash parameters (?w=600&h=600&fit=crop&auto=format) 
-        // forces WebP compression and exact pixel sizing for 1s load times.
+        // --- PRODUCT DATA WITH REAL IMAGES ---
         const products = [
             {
                 id: 1,
@@ -547,7 +545,7 @@
                 id: 2,
                 name: "Apex Series 11.5\" Infield Glove",
                 price: 219.99,
-                img: "img: "https://media.nokona.com/2025/03/BornInUSA-1150-Iweb-14-hero.jpg",
+                img: "https://media.nokona.com/2025/03/BornInUSA-1150-Iweb-14-hero.jpg",
                 alt: "Open brown leather 11.5 inch baseball glove with I-web pocket",
                 desc: "Stop spending weeks breaking in your glove. The Apex Series uses premium, pre-oiled Kip leather that holds its shape but feels soft on day one. The I-web design gives infielders the perfect pocket for quick ball transfers.",
                 bullets: ["Pre-oiled Kip leather", "I-web for quick transfers", "Modified trap-eze for comfort", "Hand-stitched in the USA"],
@@ -637,10 +635,8 @@
             currentProduct = products.find(p => p.id === id);
             if(!currentProduct) return;
 
-            // Load a higher res image for the detail page (w=900)
-            const detailImg = currentProduct.img.replace('w=600&h=600', 'w=900&h=700');
-            
-            document.getElementById('pd-image').src = detailImg;
+            // Since we are using an external JPG without resize parameters, we just use the direct URL
+            document.getElementById('pd-image').src = currentProduct.img;
             document.getElementById('pd-image').alt = currentProduct.alt;
             document.getElementById('pd-title').innerText = currentProduct.name;
             document.getElementById('pd-price').innerText = `$${currentProduct.price.toFixed(2)}`;
